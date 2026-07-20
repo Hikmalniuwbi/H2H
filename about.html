@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Hearts2Hearts</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html"><img src="assets/logo/logo.png" alt="Hearts2Hearts" class="logo-img" />
+          Hearts2Hearts</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="music.html">Music</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <h1>About Hearts2Hearts</h1>
+    <p>Discover our story, our vision, and our heart.</p>
+  </section>
+
+  <main>
+    <section class="section-white">
+      <div class="container grid-45-55">
+        <div>
+          <img src="assets/member_group/group photo.png" alt="Hearts2Hearts Group"
+            style="width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <div>
+          <span class="section-subtitle">About Us</span>
+          <h2>Hearts2Hearts</h2>
+          <p class="hangeul-subtitle"
+            style="font-family: var(--font-heading); font-size: 18px; color: var(--primary-blue); margin-bottom: 16px;">
+            하츠투하츠
+          </p>
+          <p>
+            Hearts2Hearts is a modern idol group of eight talented members
+            focused on spreading happiness, motivation, and love through
+            dynamic pop music harmony. Formed with the vision of bridging
+            hearts between people, the group is committed to delivering
+            the best stage performances at every opportunity.
+          </p>
+          <p>
+            The name "Hearts2Hearts" symbolizes the genuine connection between
+            members and fans — an emotional bridge created through music.
+            Every song we release is a love letter to Heartbeats around the world.
+          </p>
+          <p>
+            Blending pop, R&B, and electronic dance genres,
+            Hearts2Hearts continues to push creative boundaries to deliver
+            music that not only sounds good but touches the soul.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-gray">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 40px">
+          <span class="section-subtitle">Our Hearts</span>
+          <h2>Meet the Members</h2>
+          <p style="max-width: 600px; margin: 0 auto">
+            Click on a member photo to view their full profile.
+          </p>
+        </div>
+        <div class="scroll-wrapper">
+          <button class="scroll-btn scroll-left" onclick="scrollMembers('members-scroll', -340)"
+            aria-label="Scroll left">
+            <span>‹</span>
+          </button>
+          <div class="horizontal-scroll" id="members-scroll">
+            <div class="member-click-card" onclick="showMember('jiwoo')">
+              <img src="assets/member_group/jiwoo.png" alt="Jiwoo" />
+              <span class="mcc-hint">Click for profile</span>
+              <div class="mcc-overlay">
+                <div class="mcc-name">Jiwoo</div>
+                <div class="mcc-pos">Leader, Main Vocalist</div>
+              </div>
+            </div>
+            <div class="member-click-card" onclick="showMember('ian')">
+              <img src="assets/member_group/ian.png" alt="Ian" />
+              <span class="mcc-hint">Click for profile</span>
+              <div class="mcc-overlay">
+                <div class="mcc-name">Ian</div>
+                <div class="mcc-pos">Lead Dancer, Sub Vocalist</div>
+              </div>
+            </div>
+            <div class="member-click-card" onclick="showMember('carmen')">
+              <img src="assets/member_group/carmen.png" alt="Carmen" />
+              <span class="mcc-hint">Click for profile</span>
+              <div class="mcc-overlay">
+                <div class="mcc-name">Carmen</div>
+                <div class="mcc-pos">Main Rapper, Lead Dancer</div>
+              </div>
+            </div>
+            <div class="member-click-card" onclick="showMember('stella')">
+              <img src="assets/member_group/stella.png" alt="Stella" />
+              <span class="mcc-hint">Click for profile</span>
+              <div class="mcc-overlay">
+                <div class="mcc-name">Stella</div>
+                <div class="mcc-pos">Lead Vocalist, Visual</div>
+              </div>
+            </div>
+            <div class="member-click-card" onclick="showMember('yuha')">
+              <img src="assets/member_group/yuha.png" alt="Yuha" />
+              <span class="mcc-hint">Click for profile</span>
+              <div class="mcc-overlay">
+                <div class="mcc-name">Yuha</div>
+                <div class="mcc-pos">Main Dancer, Sub Rapper</div>
+              </div>
+            </div>
+            <div class="member-click-card" onclick="showMember('yeon')">
+              <img src="assets/member_group/yeon.png" alt="Yeon" />
+              <span class="mcc-hint">Click for profile</span>
+              <div class="mcc-overlay">
+                <div class="mcc-name">Yeon</div>
+                <div class="mcc-pos">Lead Vocalist, Center</div>
+              </div>
+            </div>
+            <div class="member-click-card" onclick="showMember('ana')">
+              <img src="assets/member_group/ana.png" alt="Ana" />
+              <span class="mcc-hint">Click for profile</span>
+              <div class="mcc-overlay">
+                <div class="mcc-name">Ana</div>
+                <div class="mcc-pos">Sub Vocalist, Maknae</div>
+              </div>
+            </div>
+            <div class="member-click-card" onclick="showMember('juun')">
+              <img src="assets/member_group/juun.jpg" alt="Juun" />
+              <span class="mcc-hint">Click for profile</span>
+              <div class="mcc-overlay">
+                <div class="mcc-name">Juun</div>
+                <div class="mcc-pos">Lead Rapper, Sub Vocalist</div>
+              </div>
+            </div>
+          </div>
+          <button class="scroll-btn scroll-right" onclick="scrollMembers('members-scroll', 340)"
+            aria-label="Scroll right">
+            <span>›</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-white">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 40px">
+          <span class="section-subtitle">Our Moment</span>
+          <h2>Gallery</h2>
+          <p style="max-width: 600px; margin: 0 auto">
+            Precious moments of Hearts2Hearts, our beloved journey together
+          </p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="assets/member_group/pg1.jpg" alt="Moment 1" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/member_group/pg2.jpg" alt="Moment 2" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/member_group/pg3.jpg" alt="Moment 3" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/member_group/pg4.jpg" alt="Moment 4" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/member_group/pg5.jpg" alt="Moment 5" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/member_group/pg6.jpg" alt="Moment 6" />
+          </div>
+        </div>
+    </section>
+  </main>
+
+  <div class="member-modal" id="memberModal">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <img class="modal-hero-img" id="modalImg" src="" alt="Member Photo" />
+      <div class="modal-body">
+        <h1 class="modal-name" id="modalName"></h1>
+        <span class="modal-pos" id="modalPos"></span>
+
+        <div class="modal-info-grid" id="modalInfo"></div>
+
+        <div class="modal-desc" id="modalDesc"></div>
+
+        <div class="modal-facts">
+          <h3>Fun Facts</h3>
+          <ul id="modalFacts"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="logo">
+          <a href="index.html"><img src="assets/logo/logo.png" alt="Hearts2Hearts" class="logo-img" />
+            Hearts2Hearts</a>
+        </div>
+        <p class="footer-desc">
+          Hearts from all of us. Discover harmony and love in every note.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Official Terms</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Submit a Ticket</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="music.html">Music</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Fan Club</a></li>
+          <li><a href="#">News</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><img src="assets/svg/facebook.svg" alt="Facebook" /></a>
+        <a href="#" aria-label="Instagram"><img src="assets/svg/instagram.svg" alt="Instagram" /></a>
+        <a href="#" aria-label="Twitter"><img src="assets/svg/x.svg" alt="X" /></a>
+        <a href="#" aria-label="TikTok"><img src="assets/svg/tiktok.svg" alt="TikTok" /></a>
+        <a href="#" aria-label="YouTube"><img src="assets/svg/youtube.svg" alt="YouTube" /></a>
+      </div>
+    </div>
+    <div class="footer-feedback">
+      <h4>Send The Feedback</h4>
+      <form action="#" method="post">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message..." rows="3" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div class="footer-bottom">
+      © Copyright 2026 Hearts2Hearts Entertainment. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (hamburger && navMenu) {
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("open");
+      });
+    }
+
+    // ========== MEMBER DATA ==========
+    const members = {
+      jiwoo: {
+        name: "Jiwoo",
+        pos: "Leader, Main Vocalist",
+        img: "assets/member_group/jiwoo.png",
+        info: [
+          { label: "Birth Date", value: "March 15, 2002" },
+          { label: "Height", value: "167 cm" },
+          { label: "Blood Type", value: "O" },
+          { label: "MBTI", value: "ENFJ" },
+          { label: "Zodiac", value: "Pisces" },
+          { label: "Nationality", value: "Korea" },
+          { label: "Debut Year", value: "2025" },
+        ],
+        desc: '<p>Jiwoo is a warm and dedicated leader. With strong vocals and captivating stage charisma, she is the main foundation of the group. Jiwoo is known for her ability to inspire other members and always prioritizes team unity.</p><p>As Leader, Jiwoo is responsible for maintaining balance in the group dynamic. She always ensures every member feels heard and valued. Off stage, Jiwoo is a caring figure often called the "mom" of Hearts2Hearts.</p><p>Jiwoo also participates in writing the group\'s song lyrics. She has a great interest in painting and often spends her free time sketching or painting natural landscapes.</p>',
+        facts: [
+          "Can cook 12 traditional Korean dishes",
+          'Has a pet cat named "Mochi"',
+          "Favorite color: pastel blue",
+          "Hobbies: painting, reading fantasy novels",
+          "Favorite foods: tteokbokki and strawberries",
+          "Speaks 3 languages: Korean, English, Japanese",
+        ],
+      },
+      ian: {
+        name: "Ian",
+        pos: "Lead Dancer, Sub Vocalist",
+        img: "assets/member_group/ian.png",
+        info: [
+          { label: "Birth Date", value: "July 22, 2003" },
+          { label: "Height", value: "172 cm" },
+          { label: "Blood Type", value: "A" },
+          { label: "MBTI", value: "ESTP" },
+          { label: "Zodiac", value: "Cancer" },
+          { label: "Nationality", value: "Korea" },
+          { label: "Debut Year", value: "2025" },
+        ],
+        desc: "<p>Ian is a dance machine with explosive stage energy. His precise dance movements always become the highlight of every choreography. Behind the stage, he is a cheerful mood maker full of laughter.</p><p>Ian started dancing at age 7 and has won various dance competitions before joining Hearts2Hearts. He masters various dance genres from hip-hop, contemporary, to street dance.</p><p>Although known as the go-to dancer, Ian also has solid vocals and often contributes to song parts that need high energy. He is also active in creating choreography for most of the group's songs.</p>",
+        facts: [
+          "Can mimic dance moves after watching a video just once",
+          "Has a sneaker collection of over 50 pairs",
+          "Favorite colors: black and red",
+          "Hobbies: basketball, gaming, dance covers",
+          "Favorite foods: samgyeopsal and pizza",
+          'Nickname: "Ian Dance Machine" from fans',
+        ],
+      },
+      carmen: {
+        name: "Carmen",
+        pos: "Main Rapper, Lead Dancer",
+        img: "assets/member_group/carmen.png",
+        info: [
+          { label: "Birth Date", value: "January 10, 2002" },
+          { label: "Height", value: "165 cm" },
+          { label: "Blood Type", value: "B" },
+          { label: "MBTI", value: "ENTP" },
+          { label: "Zodiac", value: "Capricorn" },
+          { label: "Nationality", value: "Korea" },
+          { label: "Debut Year", value: "2025" },
+        ],
+        desc: "<p>Carmen has a unique flow and charismatic rap style that adds a distinct color to Hearts2Hearts' music. Her dance skills are equally impressive, making her a versatile all-rounder performer.</p><p>As Main Rapper, Carmen writes most of her own rap lyrics. She is inspired by various hip-hop music genres from Korea and America. Her sharp yet melodic rap style makes her easily recognizable.</p><p>Outside of music, Carmen is interested in fashion and often becomes a trendsetter among the members. She also has strong leadership qualities and often helps Jiwoo coordinate the group.</p>",
+        facts: [
+          "Has been writing rap lyrics since age 14",
+          "Has piercings on her left ear (3 piercings)",
+          "Favorite colors: purple and black",
+          "Hobbies: listening to hip-hop, street photography",
+          "Favorite foods: carbonara pasta and mango",
+          "Can rap in 2 languages: Korean and English",
+        ],
+      },
+      stella: {
+        name: "Stella",
+        pos: "Lead Vocalist, Visual",
+        img: "assets/member_group/stella.png",
+        info: [
+          { label: "Birth Date", value: "May 8, 2003" },
+          { label: "Height", value: "168 cm" },
+          { label: "Blood Type", value: "AB" },
+          { label: "MBTI", value: "ISFJ" },
+          { label: "Zodiac", value: "Taurus" },
+          { label: "Nationality", value: "Korea" },
+          { label: "Debut Year", value: "2025" },
+        ],
+        desc: "<p>Stella captivates fans with her melodious vocals and enchanting visuals. As lead vocalist, she often delivers the climax parts of songs. Stella is also known for her graceful and caring personality.</p><p>Stella has a wide vocal range and can easily hit high notes. She started singing in church choir as a child and has honed her skills over many years.</p><p>As Visual, Stella often becomes the center in photoshoots and album concepts. She is also interested in acting and has taken several acting classes for her future career development.</p>",
+        facts: [
+          "Can play piano and acoustic guitar",
+          "Has a habit of organizing other people's things",
+          "Favorite colors: pink and white",
+          "Hobbies: baking, journaling, yoga",
+          "Favorite foods: cheesecake and sushi",
+          'Nickname: "Stella Angel" for her kind nature',
+        ],
+      },
+      yuha: {
+        name: "Yuha",
+        pos: "Main Dancer, Sub Rapper",
+        img: "assets/member_group/yuha.png",
+        info: [
+          { label: "Birth Date", value: "September 2, 2002" },
+          { label: "Height", value: "163 cm" },
+          { label: "Blood Type", value: "A" },
+          { label: "MBTI", value: "INTJ" },
+          { label: "Zodiac", value: "Virgo" },
+          { label: "Nationality", value: "Korea" },
+          { label: "Debut Year", value: "2025" },
+        ],
+        desc: "<p>Yuha is a powerhouse dancer with incredible body control. Every movement is precise and full of expression. She also occasionally showcases her surprising rap skills. Yuha is known as a perfectionist who always gives 110%.</p><p>Yuha has been dancing since age 5 and received formal training at a prestigious dance academy. She specializes in contemporary dance and urban choreography. Her powerful and clean dance style has become Hearts2Hearts' signature.</p><p>Although famous as a dancer, Yuha is also a skilled sub rapper. She often surprises fans with her sharp rap abilities in several songs. Off stage, Yuha is a calm and introspective person.</p>",
+        facts: [
+          "Winner of national dance competition 3 years in a row",
+          "Has an older sister who is also a dancer",
+          "Favorite colors: black and gold",
+          "Hobbies: watching movies, photography, meditation",
+          "Favorite foods: grilled beef and black coffee",
+          "Can learn dance covers after watching only 2-3 times",
+        ],
+      },
+      yeon: {
+        name: "Yeon",
+        pos: "Lead Vocalist, Center",
+        img: "assets/member_group/yeon.png",
+        info: [
+          { label: "Birth Date", value: "November 28, 2002" },
+          { label: "Height", value: "166 cm" },
+          { label: "Blood Type", value: "O" },
+          { label: "MBTI", value: "INFJ" },
+          { label: "Zodiac", value: "Sagittarius" },
+          { label: "Nationality", value: "Korea" },
+          { label: "Debut Year", value: "2025" },
+        ],
+        desc: "<p>Yeon has a golden voice that can effortlessly perform various genres. As center, she becomes the focal point in every performance. Yeon has natural stage aura and outstanding ability to interact with the audience.</p><p>Yeon is known for her strong stage presence. She can command the stage and guide audience attention with her charisma and captivating expressions. She often becomes the center formation in group choreography.</p><p>Off stage, Yeon is a warm and sociable person. She has close relationships with all members and often acts as mediator when there are differences of opinion. Yeon is also active in charity and volunteer work.</p>",
+        facts: [
+          'Has a smile nicknamed "Healing Smile" by fans',
+          "Has been playing violin since elementary school",
+          "Favorite colors: white and silver",
+          "Hobbies: photography, traveling, reading poetry",
+          "Favorite foods: kimbap and ice cream",
+          'Has a pet dog named "Dduk"',
+        ],
+      },
+      ana: {
+        name: "Ana",
+        pos: "Sub Vocalist, Maknae",
+        img: "assets/member_group/ana.png",
+        info: [
+          { label: "Birth Date", value: "April 5, 2005" },
+          { label: "Height", value: "160 cm" },
+          { label: "Blood Type", value: "B" },
+          { label: "MBTI", value: "ESFP" },
+          { label: "Zodiac", value: "Aries" },
+          { label: "Nationality", value: "Korea" },
+          { label: "Debut Year", value: "2025" },
+        ],
+        desc: '<p>Ana is the youngest member with fresh charm that captures attention. Although the maknae, her vocal talent cannot be underestimated. Ana continues to grow rapidly and shows impressive maturity on stage for her age.</p><p>Ana joined Hearts2Hearts after being a trainee for 2 years. Although her training period was relatively short, she showed remarkable progress thanks to her hard work and dedication. Her unique and sweet voice adds a distinct color to the group.</p><p>As the maknae, Ana is often the group\'s "golden retriever" — cheerful, energetic, and loved by everyone. She loves entertaining other members with her funny antics and often becomes a source of happiness amidst busy schedules.</p>',
+        facts: [
+          "Can perfectly imitate cartoon character voices",
+          "Has dreamed of becoming a singer since age 6",
+          "Favorite colors: yellow and orange",
+          "Hobbies: recording TikTok dance challenges, singing",
+          "Favorite foods: churros and yogurt",
+          "Has a doll collection of over 30 pieces",
+        ],
+      },
+      juun: {
+        name: "Juun",
+        pos: "Lead Rapper, Sub Vocalist",
+        img: "assets/member_group/juun.png",
+        info: [
+          { label: "Birth Date", value: "August 19, 2003" },
+          { label: "Height", value: "175 cm" },
+          { label: "Blood Type", value: "A" },
+          { label: "MBTI", value: "ENFP" },
+          { label: "Zodiac", value: "Leo" },
+          { label: "Nationality", value: "Korea" },
+          { label: "Debut Year", value: "2025" },
+        ],
+        desc: "<p>Juun brings urban energy and distinctive attitude to the group. With sharp rap and versatile vocals, he transitions smoothly between singing and rapping. Juun is also known for his iconic fashion style.</p><p>Before debuting as an idol, Juun was active in the underground hip-hop scene and released several mixtapes. This experience gave him confidence and mature stage skills. He is often relied upon for rap parts requiring strong emotion.</p><p>Juun is known as the member with the best fashion sense. He often becomes an impromptu stylist for other members and has deep knowledge of fashion brands. In his free time, Juun enjoys designing clothes and dreams of having his own fashion brand.</p>",
+        facts: [
+          "Has a bucket hat collection of over 20 pieces",
+          "Performed at hip-hop festivals before debut",
+          "Favorite colors: army green and brown",
+          "Hobbies: fashion design, beatboxing, skateboarding",
+          "Favorite foods: bibimbap and matcha latte",
+          "Can create simple beats with a keyboard",
+        ],
+      },
+    };
+
+    function showMember(key) {
+      const m = members[key];
+      if (!m) return;
+
+      document.getElementById("modalImg").src = m.img;
+      document.getElementById("modalName").textContent = m.name;
+      document.getElementById("modalPos").textContent = m.pos;
+
+      const infoEl = document.getElementById("modalInfo");
+      infoEl.innerHTML = "";
+      m.info.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "modal-info-item";
+        div.innerHTML =
+          '<span class="modal-info-label">' +
+          item.label +
+          '</span><span class="modal-info-value">' +
+          item.value +
+          "</span>";
+        infoEl.appendChild(div);
+      });
+
+      document.getElementById("modalDesc").innerHTML =
+        "<h3>About " + m.name + "</h3>" + m.desc;
+
+      const factsEl = document.getElementById("modalFacts");
+      factsEl.innerHTML = "";
+      m.facts.forEach((f) => {
+        const li = document.createElement("li");
+        li.textContent = f;
+        factsEl.appendChild(li);
+      });
+
+      document.getElementById("memberModal").classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      document.getElementById("memberModal").classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    function scrollMembers(id, amount) {
+      const el = document.getElementById(id);
+      if (el) el.scrollBy({ left: amount, behavior: "smooth" });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+</body>
+
+</html>

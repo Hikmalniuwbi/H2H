@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Official Store — Hearts2Hearts</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html"><img src="assets/logo/logo.png" alt="Hearts2Hearts" class="logo-img" />
+          Hearts2Hearts</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="music.html">Music</a></li>
+          <li><a href="store.html" class="active">Store</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-banner" style="background-color: var(--primary-blue)">
+    <h1>Official Merchandise Store</h1>
+    <p>Support Hearts2Hearts with the latest official collection.</p>
+  </section>
+
+  <main>
+    <section class="section-blue">
+      <div class="container">
+        <div class="search-bar">
+          <input type="text" id="store-search" placeholder="Search Product" />
+        </div>
+
+        <div class="category-filter" id="category-filter">
+          <a href="#" class="active-cat" data-cat="all">All Products</a>
+          <a href="#" data-cat="lightstick">Lightstick</a>
+          <a href="#" data-cat="apparel">Apparel</a>
+          <a href="#" data-cat="accessories">Accessories</a>
+          <a href="#" data-cat="photocard">Photocard</a>
+        </div>
+
+        <div id="no-results" style="display:none;text-align:center;padding:60px 20px;color:var(--text-light);">
+          <p style="font-size:16px;">No products match your search.</p>
+        </div>
+
+        <div class="grid-4" id="product-grid">
+          <div class="product-card" data-category="accessories">
+            <img src="assets/product/card_holder.png" alt="Official Card Holder" class="product-img" />
+            <div class="product-body">
+              <h4>Official Card Holder</h4>
+              <p class="product-desc">Cute collectable card holder for your favorite photocards</p>
+              <p class="product-price">Rp 165.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="accessories">
+            <img src="assets/product/keyring.webp" alt="Character Keychain" class="product-img" />
+            <div class="product-body">
+              <h4>Character Keychain</h4>
+              <p class="product-desc">Official limited edition character keychain</p>
+              <p class="product-price">Rp 197.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="lightstick">
+            <img src="assets/product/light_stick.webp" alt="Official Lightstick" class="product-img" />
+            <div class="product-body">
+              <h4>Official Lightstick Ver 1</h4>
+              <p class="product-desc">Wireless bluetooth sync for concerts</p>
+              <p class="product-price">Rp 1.850.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="photocard">
+            <img src="assets/product/photo_card.webp" alt="Photocard Pack" class="product-img" />
+            <div class="product-body">
+              <h4>Photocard Pack Summer Ed</h4>
+              <p class="product-desc">Pack of 5 random signed photocards</p>
+              <p class="product-price">Rp 89.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="accessories">
+            <img src="assets/product/photo_holder.png" alt="Premium Photo Holder" class="product-img" />
+            <div class="product-body">
+              <h4>Premium Photo Holder Set</h4>
+              <p class="product-desc">House of H : Hide & Seek special edition photo holder</p>
+              <p class="product-price">Rp 180.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="photocard">
+            <img src="assets/product/photo_pack.png" alt="Official Photo Pack" class="product-img" />
+            <div class="product-body">
+              <h4>Official Photo Pack Collection</h4>
+              <p class="product-desc">High-quality portrait sheets and concept photos</p>
+              <p class="product-price">Rp 145.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="accessories">
+            <img src="assets/product/sticker_set.png" alt="Decorative Sticker Set" class="product-img" />
+            <div class="product-body">
+              <h4>Decorative Sticker Set</h4>
+              <p class="product-desc">Hearts2Hearts theme stickers to decorate your journals</p>
+              <p class="product-price">Rp 55.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="photocard">
+            <img src="assets/product/strip_photo_set.png" alt="Strip Photo Set" class="product-img" />
+            <div class="product-body">
+              <h4>4-Cut Strip Photo Set</h4>
+              <p class="product-desc">Exclusive House of H themed photo strips</p>
+              <p class="product-price">Rp 75.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="accessories">
+            <img src="assets/product/styling_set.png" alt="Beauty Styling Set" class="product-img" />
+            <div class="product-body">
+              <h4>Beauty Styling Kit</h4>
+              <p class="product-desc">Includes heart mini mirror, pink comb, and hair stickers</p>
+              <p class="product-price">Rp 135.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="apparel">
+            <img src="assets/product/sweatshirt.png" alt="Hearts2House Sweatshirt" class="product-img" />
+            <div class="product-body">
+              <h4>"Hearts2House" Cozy Sweatshirt</h4>
+              <p class="product-desc">Comfortable grey sweatshirt with embroidered typography</p>
+              <p class="product-price">Rp 450.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="photocard">
+            <img src="assets/product/trading_card_set.png" alt="Trading Card Set" class="product-img" />
+            <div class="product-body">
+              <h4>Hide & Seek Trading Card Set</h4>
+              <p class="product-desc">Random photo card deck pack with special hidden elements</p>
+              <p class="product-price">Rp 95.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="apparel">
+            <img src="assets/product/tshirt.webp" alt="Oversized T-Shirt" class="product-img" />
+            <div class="product-body">
+              <h4>"First Heartbeat" T-Shirt</h4>
+              <p class="product-desc">Premium 24s cotton oversized fit</p>
+              <p class="product-price">Rp 225.000</p>
+              <a href="#" class="btn btn-dark btn-small" style="width: 100%; text-align: center">Buy Now</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 40px">
+          <a href="#" class="btn btn-outline">Load More Products</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="logo">
+          <a href="index.html"><img src="assets/logo/logo.png" alt="Hearts2Hearts" class="logo-img" />
+            Hearts2Hearts</a>
+        </div>
+        <p class="footer-desc">
+          Hearts from all of us. Discover harmony and love in every note.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Official Terms</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Submit a Ticket</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="music.html">Music</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Fan Club</a></li>
+          <li><a href="#">News</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><img src="assets/svg/facebook.svg" alt="Facebook" /></a>
+        <a href="#" aria-label="Instagram"><img src="assets/svg/instagram.svg" alt="Instagram" /></a>
+        <a href="#" aria-label="Twitter"><img src="assets/svg/x.svg" alt="X" /></a>
+        <a href="#" aria-label="TikTok"><img src="assets/svg/tiktok.svg" alt="TikTok" /></a>
+        <a href="#" aria-label="YouTube"><img src="assets/svg/youtube.svg" alt="YouTube" /></a>
+      </div>
+    </div>
+    <div class="footer-feedback">
+      <h4>Send The Feedback</h4>
+      <form action="#" method="post">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message..." rows="3" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div class="footer-bottom">
+      © Copyright 2026 Hearts2Hearts Entertainment. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+    if (hamburger) {
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("open");
+      });
+    }
+
+    /* ----- Store: Search & Filter ----- */
+    const searchInput = document.getElementById("store-search");
+    const productGrid = document.getElementById("product-grid");
+    const products = productGrid.querySelectorAll(".product-card");
+    const noResults = document.getElementById("no-results");
+    const catLinks = document.querySelectorAll("#category-filter a");
+
+    let activeCategory = "all";
+
+    function filterProducts() {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      products.forEach((card) => {
+        const title = card.querySelector("h4")?.textContent?.toLowerCase() || "";
+        const desc = card.querySelector(".product-desc")?.textContent?.toLowerCase() || "";
+        const cat = card.dataset.category || "";
+        const matchesSearch = !query || title.includes(query) || desc.includes(query);
+        const matchesCat = activeCategory === "all" || cat === activeCategory;
+
+        if (matchesSearch && matchesCat) {
+          card.style.display = "";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    // Search input
+    searchInput.addEventListener("input", filterProducts);
+
+    // Category filter
+    catLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        catLinks.forEach((l) => l.classList.remove("active-cat"));
+        link.classList.add("active-cat");
+        activeCategory = link.dataset.cat;
+        filterProducts();
+      });
+    });
+  </script>
+</body>
+
+</html>

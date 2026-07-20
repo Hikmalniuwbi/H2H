@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News — Hearts2Hearts</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <a href="index.html"
+            ><img
+              src="assets/logo/logo.png"
+              alt="Hearts2Hearts"
+              class="logo-img"
+            />
+            Hearts2Hearts</a
+          >
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="events.html">Events</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="page-banner">
+      <h1>News</h1>
+      <p><a href="index.html" style="color:inherit;text-decoration:underline;">&larr; Back to Home</a></p>
+    </section>
+
+    <main>
+      <section class="section-white">
+        <div class="container">
+          <!-- Single article rendered here by JS -->
+          <div id="article-view"></div>
+
+          <!-- Fallback if no hash or invalid article -->
+          <div id="article-fallback" style="text-align:center;padding:60px 20px;display:none;">
+            <p style="font-size:18px;color:var(--text-light);margin-bottom:16px;">Select a news article to read.</p>
+            <a href="index.html" class="btn btn-pink" style="text-decoration:none;">&larr; Back to Home</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-col">
+          <div class="logo">
+            <a href="index.html"
+              ><img
+                src="assets/logo/logo.png"
+                alt="Hearts2Hearts"
+                class="logo-img"
+              />
+              Hearts2Hearts</a
+            >
+          </div>
+          <p class="footer-desc">
+            Hearts from all of us. Discover harmony and love in every note.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Official Terms</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Submit a Ticket</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="events.html">Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Fan Club</a></li>
+            <li><a href="#">News</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><img src="assets/svg/facebook.svg" alt="Facebook" /></a>
+          <a href="#" aria-label="Instagram"><img src="assets/svg/instagram.svg" alt="Instagram" /></a>
+          <a href="#" aria-label="Twitter"><img src="assets/svg/x.svg" alt="X" /></a>
+          <a href="#" aria-label="TikTok"><img src="assets/svg/tiktok.svg" alt="TikTok" /></a>
+          <a href="#" aria-label="YouTube"><img src="assets/svg/youtube.svg" alt="YouTube" /></a>
+        </div>
+      </div>
+      <div class="footer-feedback">
+        <h4>Send The Feedback</h4>
+        <form action="#" method="post">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message..." rows="3" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+      <div class="footer-bottom">
+        © Copyright 2026 Hearts2Hearts Entertainment. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("nav-menu");
+      if (hamburger) {
+        hamburger.addEventListener("click", () => {
+          navMenu.classList.toggle("open");
+        });
+      }
+
+      /* ----- Article Data ----- */
+      const articles = {
+        "article-0": {
+          badge: "Breaking News",
+          image: "assets/member_group/pg4.jpg",
+          alt: "Fan Meeting",
+          title: 'Hearts2Hearts Announces Ticket Prices for HEARTS 2 HOUSE Fan Meeting in Jakarta',
+          date: "June 1, 2026",
+          content: [
+            "Hearts2Hearts has officially announced the ticket pricing structure for their highly anticipated HEARTS 2 HOUSE fan meeting event in Jakarta. The event, which will take place at ICE BSD Convention Hall, offers Heartbeats a rare opportunity to meet the members up close and personal.",
+            "Ticket categories include Early Bird (limited to the first 500 purchasers), Regular, and VIP packages. VIP ticket holders will enjoy exclusive benefits including a hi-touch session, official merchandise pack, and a group photo opportunity with the members.",
+            "Fan club members receive a special discount on all ticket tiers. Pre-sale for fan club members begins 48 hours before the general public sale. All tickets are available for purchase through the official Events page.",
+            "Heartbeats are advised to purchase tickets early as previous events sold out within hours. The group expressed their excitement to meet Indonesian fans and promised a memorable experience for everyone attending."
+          ]
+        },
+        "article-1": {
+          badge: "Teaser",
+          image: "assets/cover_album/Flutter.jpg",
+          alt: "Summer Single Concept",
+          title: "Summer Single Concept Photo Teaser Released",
+          date: "May 28, 2026",
+          content: [
+            "Hearts2Hearts has unveiled a stunning set of concept photos ahead of their upcoming summer single release. The teaser images showcase the members in vibrant, sun-drenched aesthetics that hint at a refreshing and energetic musical direction.",
+            "The concept photos were shot across multiple locations featuring both individual member portraits and group shots. Each member's unique charm and visual identity shine through the carefully curated styling, which blends summer fashion trends with the group's signature elegant touch.",
+            "Fans have responded enthusiastically to the teaser, with social media posts garnering millions of likes within hours of release. The upcoming single marks an exciting new chapter for Hearts2Hearts as they continue to expand their musical palette.",
+            "Stay tuned for more updates including the official release date, music video teaser, and pre-order information coming soon."
+          ]
+        },
+        "article-2": {
+          badge: "Milestone",
+          image: "assets/cover_album/The_Chase.jpg",
+          alt: "First Heartbeat Album",
+          title: 'Album "First Heartbeat" Surpasses 1 Million Streams',
+          date: "May 15, 2026",
+          content: [
+            'Hearts2Hearts\' debut album "First Heartbeat" has officially surpassed 1 million streams across all major music platforms. This milestone marks a significant achievement for the rookie group, who debuted just over a year ago.',
+            'The album, which features hit tracks including the title song "Heartbeat" and fan-favorite B-sides, has been steadily climbing streaming charts since its release. The achievement reflects the group\'s growing global fanbase and the strong reception of their debut work.',
+            '"We are incredibly grateful to all Heartbeats around the world who have shown us so much love," the group shared in a statement. "This milestone means the world to us and motivates us to work even harder."',
+            "To celebrate, the group plans to release a special thank-you video and exclusive behind-the-scenes content for fans on their official social media channels."
+          ]
+        },
+        "article-3": {
+          badge: "Announcement",
+          image: "assets/cover_album/Style.jpg",
+          alt: "Fan Meeting Tickets",
+          title: "Jakarta Fan Meeting Ticket Sales Announcement",
+          date: "May 10, 2026",
+          content: [
+            "Hearts2Hearts has announced that ticket sales for their Jakarta fan meeting will officially open on May 20, 2026. The event, HEARTS 2 HOUSE, promises an intimate experience where fans can connect with the members in a cozy and interactive setting.",
+            "Ticket prices start from Early Bird pricing for those who purchase within the first week. Various seating categories are available to accommodate different preferences and budgets. Each ticket includes a special fan meeting kit with exclusive merchandise.",
+            "Fans are encouraged to register early as capacity is limited. Group discounts are available for parties of 4 or more. All transactions are processed securely through the official ticketing system.",
+            "For more details about seating arrangements and pricing tiers, visit the Events page on the official Hearts2Hearts website."
+          ]
+        },
+        "article-4": {
+          badge: "Update",
+          image: "assets/cover_album/Focus.jpg",
+          alt: "Mini Album Focus",
+          title: 'Hearts2Hearts Wins "Best Rookie" at K-Pop Music Awards',
+          date: "April 20, 2026",
+          content: [
+            'Hearts2Hearts has been awarded the "Best Rookie" title at the 2026 K-Pop Music Awards, cementing their position as one of the most promising new acts in the industry. The award recognizes outstanding achievement by a rookie group within their first year since debut.',
+            "The group's powerful debut, consistent musical releases, and strong fan engagement were cited as key factors in their win. Hearts2Hearts stood out among a competitive field of rookie groups, impressing both judges and fans with their artistry and stage presence.",
+            '"We couldn\'t have achieved this without our Heartbeats," the group said during their acceptance speech. "This award belongs to every fan who believed in us from the very beginning."',
+            "The win has sparked increased interest in the group, with several award show performance invitations and variety show appearances now being scheduled for the coming months."
+          ]
+        },
+        "article-5": {
+          badge: "Event",
+          image: "assets/cover_album/Blue_Moon.jpg",
+          alt: "Blue Moon",
+          title: "Hearts2Hearts to Hold Special Summer Concert in Bali",
+          date: "April 15, 2026",
+          content: [
+            "Hearts2Hearts is bringing their music to the Island of the Gods with a special summer concert at GWK Cultural Park in Bali. The open-air venue provides a breathtaking backdrop for what promises to be an unforgettable night of music and celebration.",
+            "The concert will feature a special setlist combining the group's hit songs with exclusive summer-themed performances. Fans can expect unique arrangements, special stages, and interactive segments designed specifically for this event.",
+            "Ticket packages include general admission, VIP with soundcheck access, and premium seating with dinner. A limited number of meet-and-greet passes will also be available. Transportation packages from major hotels in Bali will be provided for convenience.",
+            "This concert marks Hearts2Hearts' first performance in Bali and is expected to attract fans from across Indonesia and neighboring countries. Early booking is highly recommended."
+          ]
+        },
+        "article-6": {
+          badge: "Event",
+          image: "assets/member_group/pg1.jpg",
+          alt: "Ana Birthday",
+          title: "Ana's Birthday Fan Event Details",
+          date: "April 5, 2026",
+          content: [
+            "Hearts2Hearts' beloved maknae Ana celebrated her birthday with a special fan event that brought Heartbeats together for an unforgettable evening. The event featured exclusive performances, heartfelt messages, and interactive segments that showcased Ana's charming personality.",
+            "The celebration included a solo stage performance where Ana sang a special cover song dedicated to fans, followed by a Q&A session where she shared personal stories and memories from her journey with Hearts2Hearts.",
+            "Fans in attendance received a special birthday photocard set as a gift, featuring never-before-seen photos of Ana. The event was also live-streamed for international fans who couldn't attend in person.",
+            "Ana expressed her gratitude to all Heartbeats who celebrated with her, promising to continue working hard and sharing her love for music and performance with fans around the world."
+          ]
+        }
+      };
+
+      /* ----- Render Article ----- */
+      function renderArticle(id) {
+        const data = articles[id];
+        if (!data) return false;
+
+        const container = document.getElementById("article-view");
+        container.innerHTML = `
+          <article class="article-single">
+            <a href="index.html" class="article-back">&larr; Back to News</a>
+            <div class="article-header">
+              <span class="article-badge">${data.badge}</span>
+              <h2 class="article-title">${data.title}</h2>
+              <time class="article-date">${data.date}</time>
+            </div>
+            <div class="article-image-wrap">
+              <img src="${data.image}" alt="${data.alt}" class="article-image" />
+            </div>
+            <div class="article-body">
+              ${data.content.map(p => `<p>${p}</p>`).join("")}
+            </div>
+          </article>
+        `;
+        return true;
+      }
+
+      /* ----- Init ----- */
+      (function init() {
+        const hash = window.location.hash.slice(1);
+        const fallback = document.getElementById("article-fallback");
+
+        if (hash && articles[hash]) {
+          renderArticle(hash);
+        } else {
+          fallback.style.display = "block";
+        }
+      })();
+    </script>
+  </body>
+</html>
