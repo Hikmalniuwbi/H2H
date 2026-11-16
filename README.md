@@ -1,147 +1,146 @@
-# Hearts2Hearts (H2H) Web Portal & S2U Fanbase Management System
+# Hearts2Hearts (H2H) Web Portal & Sistem Manajemen Fanbase S2U
 
-Official web portal and fanbase platform for girl group **Hearts2Hearts (H2H)**, integrated with an **AdminLTE 4** administrative dashboard. Built with modern dynamic PHP Native, MySQL, and responsive front-end styling.
-
----
-
-## 🌟 Key Features
-
-### 1. Public Fan Experience
-- **Home & Hero Section**: Brand introduction, quick navigation, latest updates, and social links.
-- **About Members**: Interactive member profiles (Jiwoo, Ian, Carmen, Stella, Yuha, Yeon) with MBTI, zodiac, fun facts, and roles.
-- **Music & Discography**: Album catalog and tracklist preview with integrated audio playback.
-- **Merchandise Store**: Categorized merchandise items (Lightstick, Photocard, Apparel, Accessories) with real-time stock and checkout flow.
-- **Events & Ticketing**: Upcoming concerts, fan meetings, and festivals with live quota monitoring.
-- **News**: Official band announcements and press releases.
-- **S2U Fan Feedback**: Dedicated feedback form for verified S2U fanbase members with automatic authentication gating and profile prefilling.
-
-### 2. AdminLTE 4 Administration Dashboard (`/admin`)
-- **Dashboard Overview**: Summary counters, database module status, and recent S2U fan feedback widget.
-- **Comprehensive CRUD**: Manage Albums, Songs, Members, Merchandise, Event Categories, Events, News, Gallery, Orders, and Feedbacks.
-- **Table Data Grid Utilities**:
-  - 🔍 **Live Search**: Multi-column keyword search with query persistence.
-  - 🎯 **Contextual Filter**: Dynamic category, status, and relation filtering.
-  - 📄 **Per-Page Selection**: Switch display limits between 5, 10, 15, 25, and 50 rows.
-  - ↕️ **Interactive Column Sorting**: Clickable headers with directional sorting indicators (`ASC` / `DESC`).
-  - 📑 **Smart Pagination**: Full state-preserving URL pagination.
-- **Safe Delete Operation**:
-  - Modal confirmation with dynamic record identification (`#ID (table)`).
-  - Safe cascade cleanup preventing foreign key lock errors (`order_items`, `songs`, `events`, `gallery`, `feedbacks`).
-  - Physical media cleanup for uploaded files upon deletion.
-  - Offline-ready Bootstrap 5 bundle with CDN fallback.
-- **Localization**: 100% English interface for admin labels, tables, navigation, forms, validation messages, and alerts.
+Portal web resmi dan platform fanbase untuk girl group **Hearts2Hearts (H2H)** yang terintegrasi dengan dashboard administratif **AdminLTE 4**. Dibangun menggunakan PHP Native modern, basis data MySQL, dan antarmuka front-end responsif.
 
 ---
 
-## 🛠️ Technology Stack
+## 🌟 Fitur Utama
 
-- **Backend**: PHP 8.1+ (Native OOP & Procedural)
-- **Database**: MySQL 8.0+ (`mysqli` extension with prepared statements)
-- **Admin Dashboard**: AdminLTE 4 (Bootstrap 5.3, Bootstrap Icons)
-- **Frontend**: HTML5, Vanilla JavaScript, CSS3 Responsive Grid & Flexbox
-- **Testing**: PHP CLI automated testing suites
+### 1. Pengalaman Pengguna & Fanbase Publik
+- **Beranda (Home & Hero Section)**: Pengenalan grup, navigasi cepat, update terbaru, serta tautan media sosial resmi.
+- **Profil Member (About Members)**: Halaman profil interaktif para member (Jiwoo, Ian, Carmen, Stella, Yuha, Yeon) lengkap dengan MBTI, zodiak, fakta unik, dan posisi.
+- **Musik & Diskografi**: Katalog album dan daftar lagu dengan pemutar audio terintegrasi.
+- **Toko Merchandise**: Katalog produk berlabel resmi (Lightstick, Photocard, Pakaian, Aksesori) dengan pemantauan stok real-time dan alur checkout.
+- **Jadwal Acara & Tiket (Events)**: Informasi konser mendatang, fan meeting, dan festival beserta pemantauan kuota tiket secara langsung.
+- **Berita Terkini (News)**: Pengumuman resmi grup dan siaran pers.
+- **S2U Fan Feedback**: Formulir pesan & masukan khusus untuk member fanbase terverifikasi S2U, dilengkapi sistem proteksi login otomatis dan pengisian data profil otomatis (*prefilling*).
+
+### 2. Panel Administrasi AdminLTE 4 (`/admin`)
+- **Ringkasan Dashboard**: Indikator metrik ringkas, status modul basis data, serta widget pesan masukan terbaru dari fanbase S2U.
+- **Manajemen CRUD Lengkap**: Pengelolaan data Album, Lagu (Songs), Member, Merchandise, Kategori Acara, Acara (Events), Berita (News), Galeri, Pesanan (Orders), dan Masukan (Feedbacks).
+- **Utilitas Data Grid Tabel**:
+  - 🔍 **Pencarian Langsung (Live Search)**: Pencarian kata kunci multi-kolom yang mempertahankan status query URL.
+  - 🎯 **Filter Kontekstual**: Penyaringan dinamis berdasarkan kategori, status, dan relasi data.
+  - 📄 **Pemilihan Jumlah Baris (Per-Page Selection)**: Pilihan tampilan data 5, 10, 15, 25, dan 50 baris per halaman.
+  - ↕️ **Pengurutan Kolom Interaktif (Sorting)**: Header tabel dapat diklik dengan indikator arah (`ASC` / `DESC`).
+  - 📑 **Paginasi Pintar (Smart Pagination)**: Paginasi navigasi yang mempertahankan parameter filter dan pencarian.
+- **Operasi Hapus Aman (Safe Delete)**:
+  - Modal konfirmasi dengan identifikasi rekaman data dinamis (`#ID (nama_tabel)`).
+  - Pembersihan relasi bertingkat otomatis (*cascade cleanup*) untuk mencegah galat foreign key lock pada MySQL (`order_items`, `songs`, `events`, `gallery`, `feedbacks`).
+  - Penghapusan file fisik dari folder `uploads/` saat rekaman data dihapus.
+  - Dukungan bundle lokal Bootstrap 5 yang siap digunakan secara offline dengan fallback CDN.
+- **Lokalisasi**: Antarmuka admin panel disajikan secara terstandar dalam bahasa Inggris (label, tabel, navigasi, form, pesan validasi, dan notifikasi).
 
 ---
 
-## 🚀 Installation & Setup
+## 🛠️ Tumpukan Teknologi (Tech Stack)
 
-### Prerequisites
-- PHP 8.1 or higher with `mysqli` extension enabled
-- MySQL 8.0 or MariaDB
-- Local web server (Laragon, XAMPP, or Apache/Nginx)
+- **Backend**: PHP 8.1+ (Native OOP & Prosedural)
+- **Basis Data**: MySQL 8.0+ / MariaDB (Ekstensi `mysqli` dengan *prepared statements*)
+- **Dashboard Admin**: AdminLTE 4 (Bootstrap 5.3, Bootstrap Icons)
+- **Frontend Publik**: HTML5, Vanilla JavaScript, CSS3 Responsif (Grid & Flexbox)
+- **Pengujian**: Skrip pengujian otomatis berbasis PHP CLI
 
-### Steps
+---
 
-1. **Clone Repository**
+## 🚀 Instalasi & Konfigurasi
+
+### Prasyarat Sistem
+- PHP versi 8.1 atau yang lebih baru dengan ekstensi `mysqli` aktif
+- MySQL 8.0 atau MariaDB
+- Server lokal (Laragon, XAMPP, atau Apache/Nginx)
+
+### Langkah-langkah Instalasi
+
+1. **Clone Repositori**
    ```bash
-   git clone https://github.com/<your-username>/H2H.git
+   git clone https://github.com/Hikmalniuwbi/H2H.git
    cd H2H
    ```
 
-2. **Configure Database**
-   - Create a new MySQL database named `db_hearts2hearts`:
+2. **Konfigurasi Basis Data**
+   - Buat basis data MySQL baru bernama `db_hearts2hearts`:
      ```sql
      CREATE DATABASE `db_hearts2hearts` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
      ```
-   - Import the database dump:
+   - Impor struktur tabel dan data awal:
      ```bash
      mysql -u root -p db_hearts2hearts < database/db_hearts2hearts.sql
      ```
-   - Copy database configuration if credentials differ:
+   - Salin file konfigurasi jika menggunakan kredensial basis data khusus:
      ```bash
      cp config/database.example.php config/database.php
      ```
 
-3. **Run Application**
-   - If using Laragon or XAMPP, place the folder in your web root (`www/H2H` or `htdocs/H2H`).
-   - Or start PHP built-in server:
+3. **Menjalankan Aplikasi**
+   - Jika menggunakan Laragon atau XAMPP, pastikan folder proyek berada di direktori web root (`www/H2H` atau `htdocs/H2H`).
+   - Atau jalankan menggunakan server bawaan PHP CLI:
      ```bash
      php -S localhost:8000
      ```
-   - Public Web: `http://localhost:8000` or `http://localhost/H2H`
-   - Admin Panel: `http://localhost:8000/admin` or `http://localhost/H2H/admin`
+   - Halaman Publik: `http://localhost:8000` atau `http://localhost/H2H`
+   - Panel Admin: `http://localhost:8000/admin` atau `http://localhost/H2H/admin`
 
 ---
 
-## 🔑 Default Accounts
+## 🔑 Akun Bawaan (Default Credentials)
 
-| Role | Email | Password | Access Level |
+| Peran (Role) | Email | Kata Sandi | Hak Akses |
 |---|---|---|---|
-| **Super Administrator** | `admin@h2h.com` | `admin123` | Full AdminLTE 4 dashboard & CRUD |
-| **S2U Fan (Customer)** | `fan@h2h.com` | `admin123` | Store checkout & S2U fan feedback |
+| **Super Administrator** | `admin@h2h.com` | `admin123` | Akses penuh dashboard AdminLTE 4 & seluruh operasi CRUD |
+| **S2U Fan (Customer)** | `fan@h2h.com` | `admin123` | Akses checkout toko merchandise & pengiriman masukan S2U |
 
 ---
 
-## 🧪 Automated Testing
+## 🧪 Pengujian Otomatis (Automated Testing)
 
-Run the included verification suites to test all components:
+Jalankan rangkaian pengujian otomatis berikut melalui terminal untuk memvalidasi fungsionalitas sistem:
 
 ```bash
-# Test delete functionality & safe cascade handling
+# Uji fungsi penghapusan aman & penanganan cascade foreign key
 php tests/test_delete_functionality.php
 
-# Test AdminLTE 4 table features (search, filter, sort, paginate, dashboard)
+# Uji fitur tabel AdminLTE 4 (pencarian, filter, sorting, paginasi, dashboard)
 php tests/test_admin_features.php
 
-# Test S2U rebranding, auth gating, and feedback persistence
+# Uji rebranding S2U, proteksi autentikasi, dan persistensi pesan masukan
 php tests/test_s2u_feedback_verification.php
 ```
 
 ---
 
-## 📂 Project Structure
+## 📂 Struktur Direktori
 
 ```text
 H2H/
-├── admin/                    # AdminLTE 4 management dashboard
-│   ├── assets/               # AdminLTE CSS/JS and Bootstrap 5 bundle
-│   ├── config/               # Table schemas and column configurations
-│   ├── includes/             # Admin helper functions
-│   ├── dashboard.php         # Admin dashboard view & widgets
-│   ├── index.php             # Main listing controller & creation form
-│   ├── edit.php              # Record update view
-│   ├── delete.php            # Safe delete controller with cascade cleanup
-│   └── login.php             # Admin authentication
-├── assets/                   # Public band assets (logos, member photos, audio, album covers)
-├── config/                   # Global database connection & settings
-├── database/                 # Complete SQL schema & seed dump (`db_hearts2hearts.sql`)
-├── docs/                     # Architecture & implementation documentation
-├── includes/                 # Public navbar, footer, auth guards, and utilities
-├── tests/                    # Automated PHP CLI testing suites
-├── uploads/                  # User & admin uploaded media (albums, gallery, members, etc.)
-├── about.php                 # Member profiles & band backstory
-├── checkout.php              # Auth-gated merchandise checkout
-├── events.php                # Concerts & fan meetings schedule
-├── feedback.php              # Auth-gated S2U fan feedback form
-├── index.php                 # Public home page
-├── music.php                 # Discography & audio player
-├── news.php                  # Band announcements & press
-├── orders.php                # Customer order history
-├── store.php                 # Merchandise catalog
-└── style.css                 # Public responsive styling
+├── admin/                    # Panel dashboard manajemen AdminLTE 4
+│   ├── assets/               # File CSS/JS AdminLTE dan bundle Bootstrap 5
+│   ├── config/               # Definisi skema tabel dan konfigurasi kolom
+│   ├── includes/             # Fungsi pembantu dan utilitas admin
+│   ├── dashboard.php         # Tampilan ringkasan dashboard & widget statistik
+│   ├── index.php             # Pengendali daftar data & formulir tambah
+│   ├── edit.php              # Tampilan pembaruan data rekaman
+│   ├── delete.php            # Pengendali hapus aman dengan pembersihan cascade
+│   └── login.php             # Autentikasi masuk administrator
+├── assets/                   # Aset statis publik (logo, foto member, audio lagu, sampul album)
+├── config/                   # Konfigurasi koneksi basis data global
+├── database/                 # Berkas skema lengkap & dump data awal (db_hearts2hearts.sql)
+├── includes/                 # Komponen navbar publik, footer, auth guard, dan fungsi global
+├── tests/                    # Rangkaian pengujian otomatis berbasis PHP CLI
+├── uploads/                  # Berkas media yang diunggah (album, galeri, member, merchandise, dll.)
+├── about.php                 # Profil anggota dan latar belakang grup
+├── checkout.php              # Formulir checkout merchandise dengan proteksi autentikasi
+├── events.php                # Jadwal konser dan fan meeting
+├── feedback.php              # Formulir masukan fanbase S2U dengan proteksi autentikasi
+├── index.php                 # Halaman beranda utama
+├── music.php                 # Diskografi dan pemutar audio
+├── news.php                  # Pengumuman dan berita resmi band
+├── orders.php                # Riwayat pesanan merchandise pengguna
+├── store.php                 # Katalog toko merchandise resmi
+└── style.css                 # Lembar gaya CSS responsif antarmuka publik
 ```
 
 ---
 
-## 📄 License
-This project is developed for educational and portfolio demonstration purposes. All musical references and media are property of their respective creators.
+## 📄 Lisensi & Hak Cipta
+Proyek ini dikembangkan untuk tujuan pembelajaran, portofolio, dan demonstrasi teknis. Semua materi musik dan media visual merupakan hak milik dari pemegang hak cipta masing-masing.
