@@ -1,0 +1,37 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment & local credentials
+.env
+.env.local
+.env.*.local
+
+# Agent / Tooling internal states
+.superpowers/
+superpowers/
+docs/
+
+# Logs & temp files
+*.log
+logs/
+temp/
+tmp/
+*.tmp

@@ -1,0 +1,220 @@
+<?php
+require_once __DIR__ . '/config/database.php';
+require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/includes/auth.php';
+
+$error = '';
+$redirect = $_GET['redirect'] ?? $_POST['redirect'] ?? '';
+$notice = $_GET['notice'] ?? $_POST['notice'] ?? '';
+
+$isFeedback = (strpos($redirect, 'feedback') !== false) || ($notice === 'feedback_login_required');
+$isMerchandise = (strpos($redirect, 'checkout') !== false) || ($notice === 'merchandise_login_required');
+
+// Jika sudah login, langsung alihkan
+if (isLoggedIn()) {
+    header('Location: ' . ($redirect !== '' ? $redirect : 'index.php'));
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($email === '' || $password === '') {
+        $error = 'Email dan password wajib diisi.';
+    } else {
+        $db = getDbConnection();
+        if (!$db) {
+            $error = 'Gagal terhubung ke database. Pastikan MySQL sudah aktif.';
+        } else {
+            $stmt = $db->prepare("SELECT user_id, name, email, password, role FROM users WHERE email = ? LIMIT 1");
+            if ($stmt) {
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                $user = $res->fetch_assoc();
+                $stmt->close();
+
+                if ($user && password_verify($password, $user['password'])) {
+                    $_SESSION['user'] = [
+                        'user_id' => $user['user_id'],
+                        'name'    => $user['name'],
+                        'email'   => $user['email'],
+                        'role'    => $user['role']
+                    ];
+
+                    $target = $redirect !== '' ? $redirect : 'index.php';
+                    header("Location: $target");
+                    exit;
+                } else {
+                    $error = 'Email atau password salah.';
+                }
+            } else {
+                $error = 'Terjadi kesalahan sistem.';
+            }
+        }
+    }
+}
+
+$status = $_GET['status'] ?? '';
+?>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Hearts2Hearts</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .auth-section {
+      min-height: calc(100vh - 200px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      background-color: var(--light-gray);
+    }
+    .auth-card {
+      background: var(--white);
+      border-radius: var(--radius-round);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      padding: 40px;
+      max-width: 440px;
+      width: 100%;
+      border: 1px solid var(--border-light);
+    }
+    .auth-card h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      margin-bottom: 8px;
+      text-align: center;
+      color: var(--heading-color);
+    }
+    .auth-card p.subtitle {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--body-color);
+    }
+    .form-control-h2h {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color var(--transition-fast);
+      box-sizing: border-box;
+    }
+    .form-control-h2h:focus {
+      border-color: var(--primary-blue-dark);
+    }
+    .alert {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .alert-danger {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+    .alert-success {
+      background-color: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+    .auth-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--body-color);
+    }
+    .auth-footer a {
+      color: var(--secondary-pink-dark);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.php"><img src="assets/logo/logo.png" alt="Hearts2Hearts" class="logo-img" /> Hearts2Hearts</a>
+      </div>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="store.php">Store</a></li>
+          <li><a href="events.php">Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-section">
+    <div class="auth-card">
+      <h2>Selamat Datang S2U</h2>
+      <?php if ($isFeedback): ?>
+        <p class="subtitle">Silakan login atau buat akun terlebih dahulu untuk mengirimkan feedback web.</p>
+        <div class="alert" style="background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
+          <strong>Hai S2U!</strong> Hanya user terdaftar yang dapat mengirimkan feedback. Silakan masuk atau buat akun baru di bawah ini.
+        </div>
+      <?php elseif ($isMerchandise): ?>
+        <p class="subtitle">Silakan login atau buat akun terlebih dahulu untuk melanjutkan pembelian merchandise.</p>
+        <div class="alert" style="background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
+          <strong>Pemberitahuan:</strong> Silakan login atau buat akun terlebih dahulu untuk menyelesaikan transaksi merchandise Hearts2Hearts.
+        </div>
+      <?php else: ?>
+        <p class="subtitle">Silakan login ke akun S2U Anda untuk melanjutkan.</p>
+      <?php endif; ?>
+
+      <?php if ($status === 'registered'): ?>
+        <div class="alert alert-success">
+          Registrasi berhasil! Silakan masukkan email dan password untuk login.
+        </div>
+      <?php endif; ?>
+
+      <?php if ($error): ?>
+        <div class="alert alert-danger"><?= h($error) ?></div>
+      <?php endif; ?>
+
+      <form method="POST" action="login.php">
+        <input type="hidden" name="redirect" value="<?= h($redirect) ?>">
+        <input type="hidden" name="notice" value="<?= h($notice) ?>">
+        <div class="form-group">
+          <label for="email">Alamat Email</label>
+          <input type="email" id="email" name="email" class="form-control-h2h" placeholder="nama@email.com" required value="<?= h($_POST['email'] ?? '') ?>" autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control-h2h" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn btn-dark" style="width: 100%; margin-top: 10px;">Login Sekarang</button>
+      </form>
+
+      <div class="auth-footer">
+        Belum memiliki akun? <a href="register.php?<?= http_build_query(array_filter(['redirect' => $redirect, 'notice' => $notice])) ?>">Registrasi Akun Baru</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
