@@ -10,7 +10,7 @@ $notice = $_GET['notice'] ?? $_POST['notice'] ?? '';
 $isFeedback = (strpos($redirect, 'feedback') !== false) || ($notice === 'feedback_login_required');
 $isMerchandise = (strpos($redirect, 'checkout') !== false) || ($notice === 'merchandise_login_required');
 
-// Jika sudah login, langsung alihkan
+// If already logged in, redirect immediately
 if (isLoggedIn()) {
     header('Location: ' . ($redirect !== '' ? $redirect : 'index.php'));
     exit;
@@ -21,11 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if ($email === '' || $password === '') {
-        $error = 'Email dan password wajib diisi.';
+        $error = 'Email and password are required.';
     } else {
         $db = getDbConnection();
         if (!$db) {
-            $error = 'Gagal terhubung ke database. Pastikan MySQL sudah aktif.';
+            $error = 'Database connection failed. Please ensure MySQL is running.';
         } else {
             $stmt = $db->prepare("SELECT user_id, name, email, password, role FROM users WHERE email = ? LIMIT 1");
             if ($stmt) {
@@ -47,10 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: $target");
                     exit;
                 } else {
-                    $error = 'Email atau password salah.';
+                    $error = 'Invalid email or password.';
                 }
             } else {
-                $error = 'Terjadi kesalahan sistem.';
+                $error = 'A system error occurred.';
             }
         }
     }
@@ -59,11 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $status = $_GET['status'] ?? '';
 ?>
 <!doctype html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login — Hearts2Hearts</title>
+  <title>Log In — Hearts2Hearts</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .auth-section {
@@ -170,24 +170,24 @@ $status = $_GET['status'] ?? '';
 
   <main class="auth-section">
     <div class="auth-card">
-      <h2>Selamat Datang S2U</h2>
+      <h2>Welcome, S2U</h2>
       <?php if ($isFeedback): ?>
-        <p class="subtitle">Silakan login atau buat akun terlebih dahulu untuk mengirimkan feedback web.</p>
+        <p class="subtitle">Please log in or create an account to submit fan feedback.</p>
         <div class="alert" style="background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
-          <strong>Hai S2U!</strong> Hanya user terdaftar yang dapat mengirimkan feedback. Silakan masuk atau buat akun baru di bawah ini.
+          <strong>Hello S2U!</strong> Only registered fan members can submit feedback. Please log in or create a new account below.
         </div>
       <?php elseif ($isMerchandise): ?>
-        <p class="subtitle">Silakan login atau buat akun terlebih dahulu untuk melanjutkan pembelian merchandise.</p>
+        <p class="subtitle">Please log in or create an account to proceed with your merchandise checkout.</p>
         <div class="alert" style="background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
-          <strong>Pemberitahuan:</strong> Silakan login atau buat akun terlebih dahulu untuk menyelesaikan transaksi merchandise Hearts2Hearts.
+          <strong>Notice:</strong> Please log in or create an account to complete your Hearts2Hearts merchandise order.
         </div>
       <?php else: ?>
-        <p class="subtitle">Silakan login ke akun S2U Anda untuk melanjutkan.</p>
+        <p class="subtitle">Please log in to your S2U account to continue.</p>
       <?php endif; ?>
 
       <?php if ($status === 'registered'): ?>
         <div class="alert alert-success">
-          Registrasi berhasil! Silakan masukkan email dan password untuk login.
+          Registration successful! Please enter your email and password to log in.
         </div>
       <?php endif; ?>
 
@@ -199,8 +199,8 @@ $status = $_GET['status'] ?? '';
         <input type="hidden" name="redirect" value="<?= h($redirect) ?>">
         <input type="hidden" name="notice" value="<?= h($notice) ?>">
         <div class="form-group">
-          <label for="email">Alamat Email</label>
-          <input type="email" id="email" name="email" class="form-control-h2h" placeholder="nama@email.com" required value="<?= h($_POST['email'] ?? '') ?>" autofocus>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control-h2h" placeholder="name@email.com" required value="<?= h($_POST['email'] ?? '') ?>" autofocus>
         </div>
 
         <div class="form-group">
@@ -208,11 +208,11 @@ $status = $_GET['status'] ?? '';
           <input type="password" id="password" name="password" class="form-control-h2h" placeholder="••••••••" required>
         </div>
 
-        <button type="submit" class="btn btn-dark" style="width: 100%; margin-top: 10px;">Login Sekarang</button>
+        <button type="submit" class="btn btn-dark" style="width: 100%; margin-top: 10px;">Log In Now</button>
       </form>
 
       <div class="auth-footer">
-        Belum memiliki akun? <a href="register.php?<?= http_build_query(array_filter(['redirect' => $redirect, 'notice' => $notice])) ?>">Registrasi Akun Baru</a>
+        Don't have an account yet? <a href="register.php?<?= http_build_query(array_filter(['redirect' => $redirect, 'notice' => $notice])) ?>">Register New Account</a>
       </div>
     </div>
   </main>

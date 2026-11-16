@@ -23,22 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address  = trim($_POST['address'] ?? '');
 
     if ($name === '' || $email === '' || $password === '') {
-        $error = 'Nama, email, dan password wajib diisi.';
+        $error = 'Name, email, and password are required.';
     } elseif (strlen($password) < 4) {
-        $error = 'Password minimal 4 karakter.';
+        $error = 'Password must be at least 4 characters long.';
     } else {
         $db = getDbConnection();
         if (!$db) {
-            $error = 'Gagal terhubung ke database. Pastikan MySQL sudah aktif.';
+            $error = 'Database connection failed. Please ensure MySQL is running.';
         } else {
-            // Cek apakah email sudah terdaftar
+            // Check if email is already registered
             $checkStmt = $db->prepare("SELECT user_id FROM users WHERE email = ? LIMIT 1");
             $checkStmt->bind_param("s", $email);
             $checkStmt->execute();
             $checkRes = $checkStmt->get_result();
 
             if ($checkRes->num_rows > 0) {
-                $error = 'Email ini sudah terdaftar. Silakan login atau gunakan email lain.';
+                $error = 'This email is already registered. Please log in or use another email.';
                 $checkStmt->close();
             } else {
                 $checkStmt->close();
@@ -56,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         header("Location: login.php?" . http_build_query($queryParams));
                         exit;
                     } else {
-                        $error = 'Gagal menyimpan data pendaftaran: ' . $insStmt->error;
+                        $error = 'Failed to save registration data: ' . $insStmt->error;
                         $insStmt->close();
                     }
                 } else {
-                    $error = 'Terjadi kesalahan sistem saat membuat akun.';
+                    $error = 'A system error occurred while creating the account.';
                 }
             }
         }
@@ -68,11 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!doctype html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registrasi Akun — Hearts2Hearts</title>
+  <title>Register Account — Hearts2Hearts</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .auth-section {
@@ -178,19 +178,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <main class="auth-section">
     <div class="auth-card">
-      <h2>Daftar Akun S2U</h2>
+      <h2>Register S2U Account</h2>
       <?php if ($isFeedback): ?>
-        <p class="subtitle">Buat akun untuk mulai mengirimkan saran & feedback bagi Hearts2Hearts.</p>
+        <p class="subtitle">Create an account to start submitting suggestions & feedback for Hearts2Hearts.</p>
         <div class="alert" style="background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
-          <strong>Hai S2U!</strong> Pendaftaran akun hanya butuh waktu 1 menit agar pesan feedback Anda terverifikasi.
+          <strong>Hello S2U!</strong> Account registration takes only 1 minute to verify your feedback submissions.
         </div>
       <?php elseif ($isMerchandise): ?>
-        <p class="subtitle">Buat akun untuk melanjutkan checkout merchandise Hearts2Hearts.</p>
+        <p class="subtitle">Create an account to proceed with Hearts2Hearts merchandise checkout.</p>
         <div class="alert" style="background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
-          <strong>Pemberitahuan:</strong> Daftarkan akun Anda agar riwayat pesanan merchandise tersimpan dengan aman.
+          <strong>Notice:</strong> Register your account so your merchandise order history is safely tracked.
         </div>
       <?php else: ?>
-        <p class="subtitle">Daftarkan diri Anda sebagai bagian resmi dari fanbase S2U Hearts2Hearts.</p>
+        <p class="subtitle">Register to become an official member of the Hearts2Hearts S2U fanbase.</p>
       <?php endif; ?>
 
       <?php if ($error): ?>
@@ -202,35 +202,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="hidden" name="notice" value="<?= h($notice) ?>">
 
         <div class="form-group">
-          <label for="name">Nama Lengkap *</label>
-          <input type="text" id="name" name="name" class="form-control-h2h" placeholder="Nama Anda" required value="<?= h($_POST['name'] ?? '') ?>" autofocus>
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" class="form-control-h2h" placeholder="Your Full Name" required value="<?= h($_POST['name'] ?? '') ?>" autofocus>
         </div>
 
         <div class="form-group">
-          <label for="email">Alamat Email *</label>
-          <input type="email" id="email" name="email" class="form-control-h2h" placeholder="nama@email.com" required value="<?= h($_POST['email'] ?? '') ?>">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" class="form-control-h2h" placeholder="name@email.com" required value="<?= h($_POST['email'] ?? '') ?>">
         </div>
 
         <div class="form-group">
           <label for="password">Password *</label>
-          <input type="password" id="password" name="password" class="form-control-h2h" placeholder="Minimal 4 karakter" required>
+          <input type="password" id="password" name="password" class="form-control-h2h" placeholder="At least 4 characters" required>
         </div>
 
         <div class="form-group">
-          <label for="phone">Nomor Telepon / WhatsApp</label>
+          <label for="phone">Phone / WhatsApp Number</label>
           <input type="text" id="phone" name="phone" class="form-control-h2h" placeholder="08xxxxxxxxxx" value="<?= h($_POST['phone'] ?? '') ?>">
         </div>
 
         <div class="form-group">
-          <label for="address">Alamat Pengiriman</label>
-          <textarea id="address" name="address" class="form-control-h2h" rows="2" placeholder="Nama jalan, nomor rumah, kota, kode pos"><?= h($_POST['address'] ?? '') ?></textarea>
+          <label for="address">Shipping Address</label>
+          <textarea id="address" name="address" class="form-control-h2h" rows="2" placeholder="Street name, house number, city, postal code"><?= h($_POST['address'] ?? '') ?></textarea>
         </div>
 
-        <button type="submit" class="btn btn-dark" style="width: 100%; margin-top: 10px;">Daftar Sekarang</button>
+        <button type="submit" class="btn btn-dark" style="width: 100%; margin-top: 10px;">Register Now</button>
       </form>
 
       <div class="auth-footer">
-        Sudah memiliki akun? <a href="login.php?<?= http_build_query(array_filter(['redirect' => $redirect, 'notice' => $notice])) ?>">Kembali ke Login</a>
+        Already have an account? <a href="login.php?<?= http_build_query(array_filter(['redirect' => $redirect, 'notice' => $notice])) ?>">Back to Log In</a>
       </div>
     </div>
   </main>
