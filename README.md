@@ -81,8 +81,3 @@ php tests/test_delete_functionality.php
 php tests/test_admin_features.php
 php tests/test_s2u_feedback_verification.php
 ```
-
----
-
-## Lisensi
-Proyek ini dikembangkan untuk kebutuhan portofolio dan demonstrasi teknis.
