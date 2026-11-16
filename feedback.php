@@ -7,7 +7,7 @@ $message = '';
 $error = '';
 $currentUser = currentUser();
 
-// Jika belum login dan ada permintaan POST, wajib diarahkan untuk login
+// Authentication guard: require login for POST submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isLoggedIn()) {
         header('Location: login.php?redirect=feedback.php&notice=feedback_login_required');
@@ -15,13 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $userId = (int)$currentUser['user_id'];
-    // Nama dan email terintegrasi langsung dengan profil user
     $name = trim(!empty($_POST['name']) ? $_POST['name'] : $currentUser['name']);
     $email = trim(!empty($_POST['email']) ? $_POST['email'] : $currentUser['email']);
     $feedbackMsg = trim($_POST['message'] ?? '');
 
     if ($feedbackMsg === '') {
-        $error = 'Pesan feedback tidak boleh kosong.';
+        $error = 'Feedback message cannot be empty.';
     } else {
         $db = getDbConnection();
         if ($db) {
@@ -29,21 +28,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt) {
                 $stmt->bind_param("isss", $userId, $name, $email, $feedbackMsg);
                 if ($stmt->execute()) {
-                    $message = 'Terima kasih atas feedback Anda! Pesan Anda telah kami terima dan akan ditinjau oleh tim Hearts2Hearts.';
+                    $message = 'Thank you for your feedback! Your message has been received and will be reviewed by the Hearts2Hearts team.';
                 } else {
-                    $error = 'Gagal menyimpan feedback: ' . $stmt->error;
+                    $error = 'Failed to save feedback: ' . $stmt->error;
                 }
                 $stmt->close();
             } else {
-                $error = 'Terjadi kesalahan sistem saat memproses feedback.';
+                $error = 'A system error occurred while processing your feedback.';
             }
         } else {
-            $error = 'Gagal terhubung ke database. Pastikan MySQL sudah aktif.';
+            $error = 'Database connection failed. Please ensure MySQL is running.';
         }
     }
 }
 
-// Ambil riwayat feedback yang pernah dikirim oleh user ini
+// Fetch feedback history for this user
 $userFeedbacks = [];
 if (isLoggedIn()) {
     $db = getDbConnection();
@@ -61,11 +60,11 @@ if (isLoggedIn()) {
 $currentPage = 'home';
 ?>
 <!doctype html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feedback Fans — Hearts2Hearts</title>
+  <title>Fan Feedback — Hearts2Hearts</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .feedback-container {
@@ -150,15 +149,15 @@ $currentPage = 'home';
   <?php include __DIR__ . '/includes/navbar.php'; ?>
 
   <section class="page-banner" style="background-color: var(--primary-blue)">
-    <h1>Feedback Fans</h1>
-    <p>Kami sangat menghargai saran dan masukan dari S2U.</p>
+    <h1>Fan Feedback</h1>
+    <p>We truly value thoughts, feedback, and suggestions from S2U.</p>
   </section>
 
   <main>
     <div class="feedback-container">
       <?php if ($message): ?>
         <div style="background-color: #dcfce7; color: #166534; padding: 18px 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #bbf7d0; text-align: center;">
-          <h3 style="margin-bottom: 6px; font-size: 18px;">Pesan Terkirim!</h3>
+          <h3 style="margin-bottom: 6px; font-size: 18px;">Message Sent!</h3>
           <p style="margin: 0; font-size: 14px;"><?= h($message) ?></p>
         </div>
       <?php endif; ?>
@@ -170,30 +169,30 @@ $currentPage = 'home';
       <?php endif; ?>
 
       <?php if (!isLoggedIn()): ?>
-        <!-- Todongan Login untuk user yang belum memiliki akun/login -->
+        <!-- Login requirement for visitors without an active session -->
         <div class="auth-alert-box">
           <div style="font-size: 44px; margin-bottom: 12px;">💌</div>
           <h2 style="font-family: var(--font-heading); font-size: 24px; margin-bottom: 10px; color: var(--heading-color);">
-            Eksklusif untuk Member S2U
+            Exclusive for S2U Members
           </h2>
           <p style="color: var(--text-light); line-height: 1.6; margin-bottom: 24px; font-size: 14px;">
-            Hanya user fan yang telah memiliki akun terdaftar yang dapat mengirimkan feedback untuk website dan grup Hearts2Hearts. Silakan login atau buat akun baru terlebih dahulu.
+            Only registered fan members can submit feedback for Hearts2Hearts. Please log in or create a new account to continue.
           </p>
           <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <a href="login.php?redirect=feedback.php&notice=feedback_login_required" class="btn btn-dark" style="padding: 10px 24px; border-radius: 50px;">
-              Login Sekarang
+              Log In Now
             </a>
             <a href="register.php?redirect=feedback.php&notice=feedback_login_required" class="btn btn-pink" style="padding: 10px 24px; border-radius: 50px;">
-              Daftar Akun Baru
+              Register New Account
             </a>
           </div>
         </div>
       <?php else: ?>
-        <!-- Form Feedback untuk user fan yang sudah login -->
+        <!-- Feedback form for authenticated S2U fan users -->
         <div class="feedback-card">
           <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
             <div>
-              <span style="font-size: 12px; color: #1e40af; font-weight: 600; text-transform: uppercase;">Terhubung sebagai Member S2U</span>
+              <span style="font-size: 12px; color: #1e40af; font-weight: 600; text-transform: uppercase;">Connected as S2U Member</span>
               <div style="font-size: 15px; font-weight: 600; color: #1e3a8a; margin-top: 2px;">
                 <?= h($currentUser['name']) ?> (<?= h($currentUser['email']) ?>)
               </div>
@@ -203,32 +202,32 @@ $currentPage = 'home';
 
           <form action="feedback.php" method="POST">
             <div class="form-group-h2h">
-              <label for="name">Nama Fan</label>
-              <input type="text" id="name" name="name" class="form-control-h2h form-control-readonly" value="<?= h($currentUser['name']) ?>" readonly title="Nama diambil dari data akun Anda" />
+              <label for="name">Fan Name</label>
+              <input type="text" id="name" name="name" class="form-control-h2h form-control-readonly" value="<?= h($currentUser['name']) ?>" readonly title="Prefilled from your account profile" />
             </div>
 
             <div class="form-group-h2h">
-              <label for="email">Email Fan</label>
-              <input type="email" id="email" name="email" class="form-control-h2h form-control-readonly" value="<?= h($currentUser['email']) ?>" readonly title="Email diambil dari data akun Anda" />
+              <label for="email">Fan Email</label>
+              <input type="email" id="email" name="email" class="form-control-h2h form-control-readonly" value="<?= h($currentUser['email']) ?>" readonly title="Prefilled from your account profile" />
             </div>
 
             <div class="form-group-h2h">
-              <label for="message">Pesan Feedback & Saran</label>
-              <textarea id="message" name="message" class="form-control-h2h form-control-textarea" rows="5" placeholder="Tuliskan apresiasi, kritik membangun, atau saran fitur untuk website Hearts2Hearts..." required><?= h($_POST['message'] ?? '') ?></textarea>
+              <label for="message">Feedback & Suggestions</label>
+              <textarea id="message" name="message" class="form-control-h2h form-control-textarea" rows="5" placeholder="Share your appreciation, constructive thoughts, or feature suggestions for Hearts2Hearts..." required><?= h($_POST['message'] ?? '') ?></textarea>
             </div>
 
             <button type="submit" class="btn btn-dark" style="width: 100%; padding: 12px; border-radius: var(--radius-pill); font-size: 15px; font-weight: 600;">
-              Kirim Feedback
+              Submit Feedback
             </button>
           </form>
 
           <?php if (!empty($userFeedbacks)): ?>
             <div class="feedback-history">
-              <h3>Riwayat Feedback Anda</h3>
+              <h3>Your Feedback History</h3>
               <?php foreach ($userFeedbacks as $fb): ?>
                 <div class="history-item">
                   <div style="color: #1e293b;"><?= nl2br(h($fb['message'])) ?></div>
-                  <div class="history-time"><?= date('d M Y, H:i', strtotime($fb['created_at'])) ?> WIB</div>
+                  <div class="history-time"><?= date('d M Y, H:i', strtotime($fb['created_at'])) ?></div>
                 </div>
               <?php endforeach; ?>
             </div>
@@ -237,7 +236,7 @@ $currentPage = 'home';
       <?php endif; ?>
 
       <div style="text-align: center; margin-top: 28px;">
-        <a href="index.php" class="btn btn-pink" style="border-radius: var(--radius-pill);">&larr; Kembali ke Beranda</a>
+        <a href="index.php" class="btn btn-pink" style="border-radius: var(--radius-pill);">&larr; Back to Home</a>
       </div>
     </div>
   </main>

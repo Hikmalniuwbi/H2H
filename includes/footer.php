@@ -44,12 +44,12 @@
     </div>
   </div>
   <div class="footer-feedback">
-    <h4>Send The Feedback</h4>
+    <h4>Send Your Feedback</h4>
     <?php if (function_exists('isLoggedIn') && isLoggedIn()): ?>
       <?php $footerUser = currentUser(); ?>
       <form action="feedback.php" method="POST">
-        <input type="text" name="name" value="<?= h($footerUser['name']) ?>" readonly style="background: rgba(255,255,255,0.15); color: #fff;" title="Akun S2U terverifikasi" />
-        <input type="email" name="email" value="<?= h($footerUser['email']) ?>" readonly style="background: rgba(255,255,255,0.15); color: #fff;" title="Akun S2U terverifikasi" />
+        <input type="text" name="name" value="<?= h($footerUser['name']) ?>" readonly style="background: rgba(255,255,255,0.15); color: #fff;" title="S2U Verified Account" />
+        <input type="email" name="email" value="<?= h($footerUser['email']) ?>" readonly style="background: rgba(255,255,255,0.15); color: #fff;" title="S2U Verified Account" />
         <textarea name="message" placeholder="Your Message (S2U Fan)..." rows="3" required></textarea>
         <button type="submit">Send</button>
       </form>
@@ -61,7 +61,7 @@
         <button type="submit">Send</button>
       </form>
       <small style="display:block; margin-top:8px; font-size:12px; opacity:0.9;">
-        Khusus member S2U terdaftar. <a href="login.php?redirect=feedback.php&notice=feedback_login_required" style="color: #fff; text-decoration: underline; font-weight: 600;">Login</a> / <a href="register.php?redirect=feedback.php&notice=feedback_login_required" style="color: #fff; text-decoration: underline; font-weight: 600;">Daftar Akun</a>
+        Exclusive for registered S2U members. <a href="login.php?redirect=feedback.php&notice=feedback_login_required" style="color: #fff; text-decoration: underline; font-weight: 600;">Log In</a> / <a href="register.php?redirect=feedback.php&notice=feedback_login_required" style="color: #fff; text-decoration: underline; font-weight: 600;">Register</a>
       </small>
     <?php endif; ?>
   </div>

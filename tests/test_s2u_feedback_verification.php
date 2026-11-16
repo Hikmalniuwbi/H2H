@@ -45,8 +45,8 @@ assertCheck("news.php uses S2U for fanbase",
 
 $feedbackContent = file_get_contents($baseDir . '/feedback.php');
 assertCheck("feedback.php uses S2U for fanbase", 
-    strpos($feedbackContent, 'saran dan masukan dari S2U') !== false &&
-    strpos($feedbackContent, 'saran dan masukan dari Heartbeats') === false
+    (strpos($feedbackContent, 'suggestions from S2U') !== false || strpos($feedbackContent, 'saran dan masukan dari S2U') !== false) &&
+    strpos($feedbackContent, 'Heartbeats') === false
 );
 
 $userQuery = $db->query("SELECT name FROM users WHERE email = 'fan@h2h.com'");
@@ -123,7 +123,7 @@ curl_setopt_array($ch, [
 $bodyFb = curl_exec($ch);
 curl_close($ch);
 assertCheck("Unauthenticated GET to feedback.php shows S2U membership login prompt", 
-    strpos($bodyFb, 'Eksklusif untuk Member S2U') !== false &&
+    (strpos($bodyFb, 'Exclusive for S2U Members') !== false || strpos($bodyFb, 'Eksklusif untuk Member S2U') !== false) &&
     strpos($bodyFb, 'login.php?redirect=feedback.php&notice=feedback_login_required') !== false
 );
 
