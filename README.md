@@ -54,12 +54,9 @@ Portal web resmi girl group Hearts2Hearts (H2H) berbasis PHP Native dan MySQL, t
    cp config/database.example.php config/database.php
    ```
 
-4. Jalankan aplikasi melalui web server lokal (Laragon/XAMPP) atau server bawaan PHP:
-   ```bash
-   php -S localhost:8000
-   ```
-   - Portal Publik: `http://localhost:8000`
-   - Panel Admin: `http://localhost:8000/admin`
+4. Akses aplikasi melalui web server lokal (Laragon / XAMPP):
+   - User / Fan / Umum: `http://localhost/H2H-main/index.php`
+   - Admin: `http://localhost/H2H-main/admin/login.php`
 
 ---
 

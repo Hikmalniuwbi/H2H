@@ -37,11 +37,11 @@ if ($db) {
 $currentPage = 'orders';
 ?>
 <!doctype html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Riwayat Pesanan — Hearts2Hearts</title>
+  <title>My Orders — Hearts2Hearts</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .status-badge {
@@ -61,8 +61,8 @@ $currentPage = 'orders';
   <?php include __DIR__ . '/includes/navbar.php'; ?>
 
   <section class="page-banner" style="background-color: var(--primary-blue)">
-    <h1>Riwayat Pesanan</h1>
-    <p>Kelola dan pantau status pembelian tiket dan merchandise Anda.</p>
+    <h1>My Orders</h1>
+    <p>Manage and track your merchandise and ticket purchases.</p>
   </section>
 
   <main>
@@ -70,33 +70,33 @@ $currentPage = 'orders';
       <div class="container" style="max-width: 900px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
           <div>
-            <h3>Daftar Transaksi</h3>
+            <h3>Transaction History</h3>
             <p style="font-size: 14px; color: var(--text-light); margin: 0;">
               User: <strong><?= h($currentUser['name']) ?></strong> (<?= h($currentUser['email']) ?>)
             </p>
           </div>
           <div>
-            <a href="store.php" class="btn btn-pink btn-small">+ Beli Merchandise</a>
-            <a href="events.php" class="btn btn-outline btn-small">+ Beli Tiket</a>
+            <a href="store.php" class="btn btn-pink btn-small">+ Buy Merchandise</a>
+            <a href="events.php" class="btn btn-outline btn-small">+ Buy Tickets</a>
           </div>
         </div>
 
         <?php if (empty($ordersList)): ?>
           <div style="text-align: center; padding: 60px 20px; background: var(--light-gray); border-radius: 8px;">
             <p style="font-size: 16px; color: var(--text-light); margin-bottom: 16px;">
-              Anda belum memiliki riwayat pesanan.
+              You do not have any order history yet.
             </p>
-            <a href="store.php" class="btn btn-pink btn-small">Mulai Belanja di Official Store</a>
+            <a href="store.php" class="btn btn-pink btn-small">Start Shopping at Official Store</a>
           </div>
         <?php else: ?>
           <div style="overflow-x: auto;">
             <table class="events-table">
               <thead>
                 <tr>
-                  <th>No. Order</th>
-                  <th>Tanggal</th>
-                  <th>Item</th>
-                  <th>Total Bayar</th>
+                  <th>Order ID</th>
+                  <th>Date</th>
+                  <th>Items</th>
+                  <th>Total Amount</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -115,7 +115,7 @@ $currentPage = 'orders';
                     </td>
                     <td>
                       <div style="max-width: 320px; font-size: 14px;">
-                        <?= h($ord['item_names'] ?: 'Detail Item') ?>
+                        <?= h($ord['item_names'] ?: 'Item Details') ?>
                       </div>
                     </td>
                     <td style="font-weight: 600; color: var(--primary-blue);">

@@ -6,7 +6,7 @@ require_once __DIR__ . '/includes/auth.php';
 $type = $_GET['type'] ?? 'merchandise';
 $id = (int)($_GET['id'] ?? 0);
 
-// Jika ada akses ke checkout event, alihkan ke halaman events
+// If event checkout access, redirect to events page
 if ($type === 'event') {
     header('Location: events.php');
     exit;
@@ -17,7 +17,7 @@ if ($id <= 0) {
     exit;
 }
 
-// Todong login: wajib login customer sebelum checkout
+// Require customer authentication before checkout
 $currentUrl = 'checkout.php?type=merchandise&id=' . urlencode($id);
 requireLogin($currentUrl);
 
@@ -33,7 +33,7 @@ if ($db) {
     $stmt->close();
 }
 
-// Fallback jika belum ada di database (mock data konsisten dengan katalog)
+// Fallback if not found in database (mock data consistent with catalog)
 if (!$item) {
     $item = [
         'merchandise_id' => $id,
@@ -60,18 +60,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $paymentMethod = trim($_POST['payment_method'] ?? 'bank_transfer');
 
     if ($qty < 1) {
-        $error = 'Jumlah pembelian minimal 1 item.';
+        $error = 'Minimum purchase quantity is 1 item.';
     } elseif ($available > 0 && $qty > $available) {
-        $error = 'Stok produk yang tersedia tidak mencukupi.';
+        $error = 'Insufficient stock available.';
     } elseif ($name === '' || $phone === '' || $address === '') {
-        $error = 'Semua field formulir wajib diisi.';
+        $error = 'All form fields are required.';
     } else {
         try {
             $totalAmount = $price * $qty;
             $userId = (int)$currentUser['user_id'];
-            $fullAddress = "Nama: $name\nNo. HP: $phone\nAlamat: $address\nMetode Bayar: $paymentMethod";
+            $fullAddress = "Name: $name\nPhone: $phone\nAddress: $address\nPayment Method: $paymentMethod";
 
-            // Mulai transaksi database jika koneksi aktif
+            // Start database transaction
             $db->begin_transaction();
 
             $stmtOrder = $db->prepare("INSERT INTO orders (user_id, total_amount, shipping_address, order_status, order_date) VALUES (?, ?, ?, 'pending', NOW())");
@@ -80,13 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $orderId = $stmtOrder->insert_id;
             $stmtOrder->close();
 
-            // Simpan detail item pesanan merchandise
+            // Store order items
             $stmtItem = $db->prepare("INSERT INTO order_items (order_id, merchandise_id, quantity, price, subtotal) VALUES (?, ?, ?, ?, ?)");
             $stmtItem->bind_param("iiidd", $orderId, $id, $qty, $price, $totalAmount);
             $stmtItem->execute();
             $stmtItem->close();
 
-            // Kurangi stok merchandise
+            // Deduct stock
             $stmtStock = $db->prepare("UPDATE merchandise SET stock = GREATEST(0, stock - ?) WHERE merchandise_id = ?");
             $stmtStock->bind_param("ii", $qty, $id);
             $stmtStock->execute();
@@ -98,14 +98,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } catch (Throwable $e) {
             $db->rollback();
-            $error = 'Gagal memproses pesanan: ' . $e->getMessage();
+            $error = 'Failed to process order: ' . $e->getMessage();
         }
     }
 }
 $currentPage = 'store';
 ?>
 <!doctype html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -164,8 +164,8 @@ $currentPage = 'store';
   <?php include __DIR__ . '/includes/navbar.php'; ?>
 
   <section class="page-banner" style="background-color: var(--primary-blue)">
-    <h1>Checkout Pembelian</h1>
-    <p>Konfirmasi pesanan dan informasi pengiriman Anda.</p>
+    <h1>Checkout</h1>
+    <p>Confirm your order and delivery information.</p>
   </section>
 
   <main>
@@ -180,75 +180,75 @@ $currentPage = 'store';
         <div class="checkout-container">
           <!-- Item Summary -->
           <div class="order-summary-card">
-            <h3>Ringkasan Pesanan</h3>
+            <h3>Order Summary</h3>
             <img src="<?= h($image) ?>" alt="<?= h($title) ?>" />
             <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--secondary-pink);">
-              Merchandise Resmi
+              Official Merchandise
             </span>
             <h4 style="margin: 6px 0 12px 0; font-size: 18px;"><?= h($title) ?></h4>
             <p style="font-size: 14px; color: var(--text-light); margin-bottom: 16px;">
               <?= h($item['description'] ?? 'Hearts2Hearts Official Merchandise') ?>
             </p>
             <div style="border-top: 1px dashed var(--border-light); padding-top: 14px; display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 14px; color: var(--text-light);">Harga Satuan:</span>
+              <span style="font-size: 14px; color: var(--text-light);">Unit Price:</span>
               <strong style="font-size: 16px; color: var(--primary-blue);" id="unitPriceDisplay"><?= formatRupiah($price) ?></strong>
             </div>
             <div style="margin-top: 8px; display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 14px; color: var(--text-light);">Tersedia:</span>
+              <span style="font-size: 14px; color: var(--text-light);">Available:</span>
               <span style="font-size: 14px; font-weight: 600;"><?= $available ?> pcs</span>
             </div>
             <div style="border-top: 2px solid var(--border-light); margin-top: 16px; padding-top: 14px; display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 16px; font-weight: 600;">Total Pembayaran:</span>
+              <span style="font-size: 16px; font-weight: 600;">Total Amount:</span>
               <strong style="font-size: 20px; color: var(--secondary-pink-dark);" id="totalPriceDisplay"><?= formatRupiah($price) ?></strong>
             </div>
           </div>
 
           <!-- Checkout Form -->
           <div style="background: var(--white); border: 1px solid var(--border-light); border-radius: 8px; padding: 24px;">
-            <h3>Data Pembeli & Pengiriman</h3>
+            <h3>Buyer & Shipping Details</h3>
             <p style="font-size: 13px; color: var(--text-light); margin-bottom: 20px;">
-              Masuk sebagai <strong><?= h($currentUser['name']) ?></strong> (<?= h($currentUser['email']) ?>)
+              Logged in as <strong><?= h($currentUser['name']) ?></strong> (<?= h($currentUser['email']) ?>)
             </p>
 
             <form method="POST">
               <div class="form-group">
-                <label for="quantity">Jumlah (Quantity) *</label>
+                <label for="quantity">Quantity *</label>
                 <input type="number" id="quantity" name="quantity" min="1" max="<?= max(1, $available) ?>" value="1" required />
               </div>
 
               <div class="form-group">
-                <label for="recipient_name">Nama Lengkap Penerima *</label>
+                <label for="recipient_name">Recipient Full Name *</label>
                 <input type="text" id="recipient_name" name="recipient_name" value="<?= h($currentUser['name']) ?>" required />
               </div>
 
               <div class="form-group">
-                <label for="recipient_phone">Nomor Telepon / WhatsApp *</label>
-                <input type="tel" id="recipient_phone" name="recipient_phone" placeholder="Contoh: 08123456789" required />
+                <label for="recipient_phone">Phone Number / WhatsApp *</label>
+                <input type="tel" id="recipient_phone" name="recipient_phone" placeholder="e.g. 08123456789" required />
               </div>
 
               <div class="form-group">
                 <label for="shipping_address">
-                  Alamat Lengkap Pengiriman *
+                  Full Shipping Address *
                 </label>
-                <textarea id="shipping_address" name="shipping_address" rows="3" placeholder="Jalan, Nomor Rumah, RT/RW, Kecamatan, Kota, Kode Pos" required></textarea>
+                <textarea id="shipping_address" name="shipping_address" rows="3" placeholder="Street, House Number, District, City, Postal Code" required></textarea>
               </div>
 
               <div class="form-group">
-                <label for="payment_method">Metode Pembayaran *</label>
+                <label for="payment_method">Payment Method *</label>
                 <select id="payment_method" name="payment_method" required>
-                  <option value="BCA Virtual Account">Transfer BCA Virtual Account</option>
-                  <option value="Mandiri Virtual Account">Transfer Mandiri Virtual Account</option>
-                  <option value="QRIS / GoPay / OVO">QRIS (GoPay / OVO / Dana / ShopeePay)</option>
-                  <option value="Kartu Kredit">Kartu Kredit / Debit Online</option>
+                  <option value="BCA Virtual Account">BCA Virtual Account</option>
+                  <option value="Mandiri Virtual Account">Mandiri Virtual Account</option>
+                  <option value="QRIS / E-Wallet">QRIS (GoPay / OVO / Dana / ShopeePay)</option>
+                  <option value="Credit Card">Credit Card / Debit Online</option>
                 </select>
               </div>
 
               <div style="margin-top: 24px;">
                 <button type="submit" class="btn btn-pink" style="width: 100%; text-align: center; padding: 12px; font-size: 16px;">
-                  Konfirmasi & Bayar Sekarang
+                  Confirm & Pay Now
                 </button>
                 <a href="store.php" style="display: block; text-align: center; margin-top: 12px; font-size: 14px; color: var(--text-light);">
-                  &larr; Batal & Kembali ke Store
+                  &larr; Cancel & Return to Store
                 </a>
               </div>
             </form>
